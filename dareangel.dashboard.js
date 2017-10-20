@@ -1,10 +1,11 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+require("chrome");
 // TODO: generate those free keys on the web
 const COMPUTERVISIONKEY = "";
 const BINGSPEECHKEY = "";
 window.browser = (function () {
-    return window.msBrowser ||
-        window.browser ||
-        window.chrome;
+    return window.chrome;
 })();
 var DareAngel;
 (function (DareAngel) {
@@ -15,13 +16,12 @@ var DareAngel;
             this._canUseWebAudio = false;
             this._useBingTTS = false;
             this._targetDiv = targetDiv;
-            this._bingTTSclient = new BingTTS.Client(BINGSPEECHKEY);
             var BingTTSChk = document.getElementById("useBingTTS");
             BingTTSChk.addEventListener("change", () => {
                 this._useBingTTS = BingTTSChk.checked;
             });
-            browser.tabs.query({ active: true, currentWindow: true }, (tabs) => {
-                browser.tabs.sendMessage(tabs[0].id, { command: "requestImages" }, (response) => {
+            window.browser.tabs.query({ active: true, currentWindow: true }, (tabs) => {
+                window.browser.tabs.sendMessage(tabs[0].id, { command: "requestImages" }, (response) => {
                     this._imagesList = JSON.parse(response);
                     this._imagesList.forEach((element) => {
                         var newImageHTMLElement = document.createElement("img");
@@ -37,7 +37,7 @@ var DareAngel;
                                 var warningMsg = document.createElement("div");
                                 warningMsg.innerHTML = "<h2>Please generate a Computer Vision key in the other tab.</h2>";
                                 this._targetDiv.insertBefore(warningMsg, this._targetDiv.firstChild);
-                                browser.tabs.create({ active: false, url: "https://www.microsoft.com/cognitive-services/en-US/sign-up?ReturnUrl=/cognitive-services/en-us/subscriptions?productId=%2fproducts%2f54d873dd5eefd00dc474a0f4" });
+                                window.browser.tabs.create({ active: false, url: "https://www.microsoft.com/cognitive-services/en-US/sign-up?ReturnUrl=/cognitive-services/en-us/subscriptions?productId=%2fproducts%2f54d873dd5eefd00dc474a0f4" });
                             }
                         });
                         this._targetDiv.appendChild(newImageHTMLElement);
@@ -59,7 +59,6 @@ var DareAngel;
                         window.speechSynthesis.speak(synUtterance);
                     }
                     else {
-                        this._bingTTSclient.synthesize(resultToSpeak);
                     }
                 }
             };
@@ -79,5 +78,5 @@ var DareAngel;
         }
     }
     DareAngel.Dashboard = Dashboard;
-})(DareAngel || (DareAngel = {}));
+})(DareAngel = exports.DareAngel || (exports.DareAngel = {}));
 //# sourceMappingURL=dareangel.dashboard.js.map

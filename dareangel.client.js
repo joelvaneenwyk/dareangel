@@ -1,10 +1,11 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+require("chrome");
 window.browser = (function () {
-    return window.msBrowser ||
-        window.browser ||
-        window.chrome;
+    return window.chrome;
 })();
 console.log("Dare Angel content script started");
-browser.runtime.onMessage.addListener(function (request, sender, sendResponse) {
+window.runtime.onMessage.addListener(function (request, sender, sendResponse) {
     if (request.command == "requestImages") {
         var images = document.getElementsByTagName('img');
         var imagesList = [];

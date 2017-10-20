@@ -1,6 +1,13 @@
 {
     "compilerOptions": {
         "target": "es6",
+        "lib": [
+            "es6",
+            "dom"
+        ],
+        "include": [
+            "*.ts"
+        ],
         "module": "commonjs",
         "sourceMap": true
     }

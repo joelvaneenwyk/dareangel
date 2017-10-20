@@ -1,35 +1,37 @@
+import 'chrome';
+
 // TODO: generate those free keys on the web
 const COMPUTERVISIONKEY = "";
 const BINGSPEECHKEY = "";
 
+declare global {
+  interface Window { browser: any; }
+}
+
 window.browser = (function () {
-  return window.msBrowser ||
-    window.browser ||
-    window.chrome;
+  return window.chrome;
 })();
 
-module DareAngel {
+
+export module DareAngel {
   export class Dashboard {
     private _targetDiv: HTMLElement;
     private _imagesList = [];
     private _tabIndex = 2;
     private _canUseWebAudio = false;
     private _audioContext: AudioContext;
-    private _bingTTSclient: BingTTS.Client;
     private _useBingTTS = false;
 
     constructor(targetDiv: HTMLElement) {
       this._targetDiv = targetDiv;
-
-      this._bingTTSclient = new BingTTS.Client(BINGSPEECHKEY);
 
       var BingTTSChk = <HTMLInputElement>document.getElementById("useBingTTS");
       BingTTSChk.addEventListener("change", () => {
         this._useBingTTS = BingTTSChk.checked;
       }); 
 
-      browser.tabs.query({ active: true, currentWindow: true }, (tabs) => {
-        browser.tabs.sendMessage(tabs[0].id, { command: "requestImages" }, (response) => {
+      (<any>window).browser.tabs.query({ active: true, currentWindow: true }, (tabs) => {
+        (<any>window).browser.tabs.sendMessage(tabs[0].id, { command: "requestImages" }, (response) => {
           this._imagesList = JSON.parse(response);
           this._imagesList.forEach((element) => {
             var newImageHTMLElement = document.createElement("img");
@@ -45,7 +47,7 @@ module DareAngel {
                 var warningMsg = document.createElement("div");
                 warningMsg.innerHTML = "<h2>Please generate a Computer Vision key in the other tab.</h2>";
                 this._targetDiv.insertBefore(warningMsg, this._targetDiv.firstChild);
-                browser.tabs.create({active: false, url: "https://www.microsoft.com/cognitive-services/en-US/sign-up?ReturnUrl=/cognitive-services/en-us/subscriptions?productId=%2fproducts%2f54d873dd5eefd00dc474a0f4"});
+                (<any>window).browser.tabs.create({active: false, url: "https://www.microsoft.com/cognitive-services/en-US/sign-up?ReturnUrl=/cognitive-services/en-us/subscriptions?productId=%2fproducts%2f54d873dd5eefd00dc474a0f4"});
               }
             });
             this._targetDiv.appendChild(newImageHTMLElement);
@@ -68,7 +70,6 @@ module DareAngel {
             window.speechSynthesis.speak(synUtterance);
           }
           else {
-            this._bingTTSclient.synthesize(resultToSpeak);
           } 
         }
       }

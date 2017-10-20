@@ -1,5 +1,7 @@
-var DareAngelDashboard: DareAngel.Dashboard;
+import * as da from "./dareangel.dashboard";
+
+var DareAngelDashboard: da.DareAngel.Dashboard;
 
 document.addEventListener('DOMContentLoaded', function() {
-    DareAngelDashboard = new DareAngel.Dashboard(document.getElementById("imagesCollection"));
+    DareAngelDashboard = new da.DareAngel.Dashboard(document.getElementById("imagesCollection"));
 });

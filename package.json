@@ -1,0 +1,7 @@
+{
+  "name": "universal-browser-extension",
+  "version": "1.0.0",
+  "dependencies": {
+    "@types/chrome": "0.0.50"
+  }
+}

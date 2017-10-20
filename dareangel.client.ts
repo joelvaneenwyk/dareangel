@@ -1,12 +1,12 @@
-window.browser = (function () {
-  return window.msBrowser ||
-    window.browser ||
-    window.chrome;
+import 'chrome';
+
+(<any>window).browser = (function () {
+  return window.chrome;
 })();
 
 console.log("Dare Angel content script started");
 
-browser.runtime.onMessage.addListener(
+(<any>window).runtime.onMessage.addListener(
   function (request, sender, sendResponse) {
     if (request.command == "requestImages") {
       var images: HTMLImageElement[] = <HTMLImageElement[]><any>document.getElementsByTagName('img');
