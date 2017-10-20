@@ -4,7 +4,7 @@ require("chrome");
 window.browser = (function () {
     return window.chrome;
 })();
-console.log("Dare Angel content script started");
+console.log("Universal browser extension example content script started");
 window.runtime.onMessage.addListener(function (request, sender, sendResponse) {
     if (request.command == "requestImages") {
         var images = document.getElementsByTagName('img');

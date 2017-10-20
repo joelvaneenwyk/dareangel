@@ -6,7 +6,7 @@ This project uses npm @types to install the *.d.ts files and associated dependen
 
 This command updates the 'package.json' to add a new dependency.
 
-## Dare Angel
+## Universal Browser Extension
 
 Dare Angel is a **POC extension** aiming to provide more accessibility on images of a web page.
 
