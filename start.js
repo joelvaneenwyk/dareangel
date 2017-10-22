@@ -1,8 +1,8 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-const da = require("./dareangel.dashboard");
-var DareAngelDashboard;
+var da = require("./universal.dashboard");
+var Dashboard;
 document.addEventListener('DOMContentLoaded', function () {
-    DareAngelDashboard = new da.DareAngel.Dashboard(document.getElementById("imagesCollection"));
+    Dashboard = new da.UniversalExtension.Dashboard(document.getElementById("imagesCollection"));
 });
 //# sourceMappingURL=start.js.map

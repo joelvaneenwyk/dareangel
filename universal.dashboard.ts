@@ -1,14 +1,11 @@
-import 'chrome';
+/// <reference types="chrome" />
+/// <reference path="node_modules/@types/chrome/index.d.ts" />
 
-declare global {
-  interface Window { browser: any; }
-}
-
-window.browser = (function () {
+(<any>window).browser = (function () {
   return window.chrome;
 })();
 
-export module DareAngel {
+export module UniversalExtension {
   export class Dashboard {
     private _targetDiv: HTMLElement;
     private _imagesList = [];
@@ -19,8 +16,13 @@ export module DareAngel {
     constructor(targetDiv: HTMLElement) {
       this._targetDiv = targetDiv;
 
-      (<any>window).browser.tabs.query({ active: true, currentWindow: true }, (tabs) => {
-        (<any>window).browser.tabs.sendMessage(tabs[0].id, { command: "requestImages" }, (response) => {
+      (<any>window).browser.tabs.query({
+        active: true,
+        currentWindow: true
+      }, (tabs) => {
+        (<any>window).browser.tabs.sendMessage(tabs[0].id, {
+          command: "requestImages"
+        }, (response) => {
           this._imagesList = JSON.parse(response);
           this._imagesList.forEach((element) => {
             var newImageHTMLElement = document.createElement("img");
@@ -28,8 +30,7 @@ export module DareAngel {
             newImageHTMLElement.alt = element.alt;
             newImageHTMLElement.tabIndex = this._tabIndex;
             this._tabIndex++;
-            newImageHTMLElement.addEventListener("focus", (event) => {
-            });
+            newImageHTMLElement.addEventListener("focus", (event) => {});
             this._targetDiv.appendChild(newImageHTMLElement);
           });
         });
@@ -37,5 +38,3 @@ export module DareAngel {
     }
   }
 }
-
-

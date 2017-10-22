@@ -5,7 +5,8 @@
         "**/.hg": true,
         "**/CVS": true,
         "**/.DS_Store": true,
-        "**/*.js": { "when": "$(basename).ts"},
-        "**/*.js.map": { "when": "$(basename)"}
-    }
+        "**/*.js": { "when": "$(basename).ts" },
+        "**/*.js.map": { "when": "$(basename)" }
+    },
+    "files.trimTrailingWhitespace": true
 }

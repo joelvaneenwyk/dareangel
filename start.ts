@@ -1,7 +1,7 @@
-import * as da from "./dareangel.dashboard";
+import * as da from "./universal.dashboard";
 
-var DareAngelDashboard: da.DareAngel.Dashboard;
+var Dashboard: da.UniversalExtension.Dashboard;
 
 document.addEventListener('DOMContentLoaded', function() {
-    DareAngelDashboard = new da.DareAngel.Dashboard(document.getElementById("imagesCollection"));
+    Dashboard = new da.UniversalExtension.Dashboard(document.getElementById("imagesCollection"));
 });
