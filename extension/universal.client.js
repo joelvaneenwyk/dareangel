@@ -1,5 +1,3 @@
-/// <reference types="chrome" />
-/// <reference path="node_modules/@types/chrome/index.d.ts" />
 window.browser = (function () {
     return window.chrome;
 })();

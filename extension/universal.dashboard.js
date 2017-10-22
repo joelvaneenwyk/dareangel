@@ -1,6 +1,4 @@
 "use strict";
-/// <reference types="chrome" />
-/// <reference path="node_modules/@types/chrome/index.d.ts" />
 Object.defineProperty(exports, "__esModule", { value: true });
 window.browser = (function () {
     return window.chrome;

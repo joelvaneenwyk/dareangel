@@ -19,3 +19,4 @@ This command updates the 'package.json' to add a new dependency.
 ## Resources
 
 * [Chrome Extension Help](https://developer.chrome.com/extensions/content_scripts)
+* [Chrome Extension Generator](https://github.com/yeoman/generator-chrome-extension) - Found this after already making this and doesn't really match the design goals of this project, but still has some useful components in it.
